@@ -10,7 +10,7 @@ interface AuthGuardType {
 	getToken: () => Promise<string>;
 }
 
-export let isLogged = writable<boolean>(false);
+export const isLogged = writable<boolean>(false);
 
 export function getIsLogged() {
 	let val;
@@ -24,9 +24,10 @@ export function authGuard(): AuthGuardType {
 	};
 
 	const getCurrentUser = async () => {
-		return await Auth.currentAuthenticatedUser({
+		const user = await Auth.currentAuthenticatedUser({
 			bypassCache: false,
 		});
+		return user;
 	};
 
 	const initIsLogged = async () => {

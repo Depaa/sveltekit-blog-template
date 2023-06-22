@@ -7,13 +7,13 @@
 </script>
 
 {#if isButton}
-	<a href="#" {target} on:click={handleClick}>
+	<a data-sveltekit-noscroll href="#" {target} on:click={handleClick}>
 		<i class={icon} />
 	</a>
 {/if}
 
 {#if !isButton}
-	<a href={url} {target}>
+	<a href={url}>
 		<i class={icon} />
 	</a>
 {/if}

@@ -15,18 +15,21 @@ const listPosts = async (
 	exclude = ''
 ) => {
 	console.time(`list-posts-${nextToken}`);
-	const res = await fetch(`${POSTS_URL}?limit=${limit}&nextToken=${nextToken}&exclude=${exclude}`, {
+	const url = `${POSTS_URL}?limit=${limit}&nextToken=${nextToken}&exclude=${exclude}`;
+	const params = {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
 		},
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Posts fetched');
 	const posts = await res.json();
 	console.timeEnd(`list-posts-${nextToken}`);
+	console.debug(posts);
 
 	if (posts.data && Object.keys(posts.data).length) {
-		console.debug(posts.data);
 		return posts.data;
 	}
 	return [];
@@ -39,19 +42,21 @@ const listPostsAdmin = async (
 	limit = 12
 ) => {
 	console.time(`list-posts-admin-${nextToken}`);
-	const res = await fetch(`${ADMIN_POSTS_URL}?limit=${limit}&nextToken=${nextToken}`, {
+	const url = `${ADMIN_POSTS_URL}?limit=${limit}&nextToken=${nextToken}`;
+	const params = {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,
 		},
-	});
+	};
+	const res = await fetch(url, params);
 	console.info('Posts fetched for admin');
 	const posts = await res.json();
 	console.timeEnd(`list-posts-admin-${nextToken}`);
+	console.debug(posts);
 
 	if (posts.data && Object.keys(posts.data).length) {
-		console.debug(posts.data);
 		return posts.data;
 	}
 	return [];
@@ -62,19 +67,22 @@ const getPost = async (
 	id: string
 ) => {
 	console.time(`get-post-${id}`);
-	const res = await fetch(`${POSTS_URL}/${id}`, {
+	const url = `${POSTS_URL}/${id}`;
+	const params = {
 		method: 'GET',
 		headers: {
 			'content-type': 'application/json',
 		},
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Post fetched');
-	console.debug('headers', res.headers);
 	const posts = await res.json();
 	console.timeEnd(`get-post-${id}`);
+	console.debug(posts);
+
 
 	if (posts.data && Object.keys(posts.data).length) {
-		console.debug(posts.data);
 		return posts.data;
 	}
 	throw error(404, 'Not found');
@@ -86,20 +94,22 @@ const getPostAdmin = async (
 	token: string
 ) => {
 	console.time(`get-post-admin-${id}`);
-	const res = await fetch(`${ADMIN_POSTS_URL}/${id}`, {
+	const url = `${ADMIN_POSTS_URL}/${id}`;
+	const params = {
 		method: 'GET',
 		headers: {
-			Authorization: `Bearer ${token}`,
 			'content-type': 'application/json',
+			Authorization: `Bearer ${token}`,
 		},
-	});
-	console.info('Post fetched');
-	console.debug('headers', res.headers);
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
+	console.info('Post fetched admin');
 	const posts = await res.json();
 	console.timeEnd(`get-post-admin-${id}`);
+	console.debug(posts);
 
 	if (posts.data && Object.keys(posts.data).length) {
-		console.debug(posts.data);
 		return posts.data;
 	}
 	throw error(404, 'Not found');
@@ -112,14 +122,17 @@ const updatePost = async (
 	data: UpdateBlogPost
 ) => {
 	console.time(`update-post-${id}`);
-	const res = await fetch(`${ADMIN_POSTS_URL}/${id}`, {
+	const url = `${ADMIN_POSTS_URL}/${id}`;
+	const params = {
 		method: 'PUT',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,
 		},
 		body: JSON.stringify(data),
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Post updated');
 	console.timeEnd(`update-post-${id}`);
 	console.debug(res);
@@ -131,14 +144,17 @@ const createPost = async (
 	data: CreateBlogPost
 ) => {
 	console.time('create-post');
-	const res = await fetch(`${ADMIN_POSTS_URL}`, {
+	const url = `${ADMIN_POSTS_URL}`;
+	const params = {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,
 		},
 		body: JSON.stringify(data),
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Post created');
 	const id = await res.json();
 	console.timeEnd('create-post');
@@ -152,13 +168,16 @@ const deletePost = async (
 	id: string
 ) => {
 	console.time(`delete-post-${id}`);
-	const res = await fetch(`${ADMIN_POSTS_URL}/${id}`, {
-		method: 'DELETE',
+	const url = `${ADMIN_POSTS_URL}/${id}`;
+	const params = {
+		method: 'PUT',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,
 		},
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Post deleted');
 	console.timeEnd(`delete-post-${id}`);
 	console.debug(res);
@@ -170,13 +189,16 @@ const publishPost = async (
 	id: string
 ) => {
 	console.time(`publish-post-${id}`);
-	const res = await fetch(`${ADMIN_POSTS_URL}/${id}/publish`, {
+	const url = `${ADMIN_POSTS_URL}/${id}/publish`;
+	const params = {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,
 		},
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Post published');
 	console.timeEnd(`publish-post-${id}`);
 	console.debug(res);
@@ -189,14 +211,17 @@ const createPresignedUrl = async (
 	id?: string
 ): Promise<PresignedUrl> => {
 	console.time(`create-presigned-url-${id}`);
-	const res = await fetch(`${ADMIN_POSTS_URL}/images/presigned-url${id ? `?id=${id}` : ''}`, {
+	const url = `${ADMIN_POSTS_URL}/images/presigned-url${id ? `?id=${id}` : ''}`;
+	const params = {
 		method: 'POST',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,
 		},
 		body: JSON.stringify(data),
-	});
+	};
+	console.debug(params);
+	const res = await fetch(url, params);
 	console.info('Done creating presigned url');
 	const presignedUrl = await res.json();
 	console.timeEnd(`create-presigned-url-${id}`);

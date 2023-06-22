@@ -1,0 +1,39 @@
+{
+  "stackName": "dev-blog-ssr-adapter",
+  "autoDeploy": true,
+  "FQDN": "{FQDN}",
+  "esbuildOptions": {
+    "target": "node18"
+  },
+  "existingResources": {
+    "distributionId": "{DISTRIBUTION_ID}",
+    "distributionDomainName": "{CLOUDFRONT_URL}"
+  },
+  "lambdaConfig": {
+    "memorySize": 512,
+    "runtime": "NODEJS_18_X",
+    "architecture": "ARM_64",
+    "timeout": 300,
+    "logRetentionDays": 7
+  },
+  "cacheConfig": {
+    "staticAssets": {
+      "cacheControl": "public,max-age=31536000"
+    },
+    "distributionStatic": {
+      "maxTtl": 31536000,
+      "minTtl": 31536000,
+      "defaultTtl": 31536000,
+      "enableAcceptEncodingGzip": true,
+      "enableAcceptEncodingBrotli": true,
+      "comment": "Static files cache policy."
+    },
+    "distributionDynamic": {
+      "maxTtl": 31536000,
+      "minTtl": 31536000,
+      "defaultTtl": 31536000,
+      "enableAcceptEncodingGzip": true,
+      "comment": "Dynamic server cache policy."
+    }
+  }
+}

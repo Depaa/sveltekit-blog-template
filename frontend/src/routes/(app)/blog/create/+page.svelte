@@ -255,7 +255,3 @@
 		<button on:click={handleSave}><i class="fa fa-save" /> Save</button>
 	</div>
 </div>
-
-<style>
-	@import 'https://cdn.quilljs.com/1.3.6/quill.bubble.css';
-</style>

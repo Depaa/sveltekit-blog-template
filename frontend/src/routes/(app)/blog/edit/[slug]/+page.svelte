@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { authGuard } from '$lib/auth/auth';
 	import IconButton from '$lib/components/icon-button.svelte';
-	import MarkupTextEditor from '$lib/components/markup-text-editor.svelte';
+// import MarkupTextEditor from '$lib/components/markup-text-editor.svelte';
 	import Modal from '$lib/components/modal.svelte';
 	import Tag from '$lib/components/tag.svelte';
 	import Toggle from '$lib/components/toggle.svelte';
@@ -12,8 +12,14 @@
 	import type { Seo } from '$lib/types/BlogPost';
 	import '$lib/types/CustomEvent';
 	import type Data from '$lib/types/Data';
+	import { onMount } from 'svelte';
 
 	export let data: Data;
+
+	let Editor: ConstructorOfATypedSvelteComponent;
+	onMount(async () => {
+		import('$lib/components/markup-text-editor.svelte').then(res => Editor = res.default)
+	});
 
 	let content = data.post.content.replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 	let contentMd = data.post.contentMd;
@@ -266,7 +272,8 @@
 				</div>
 				<div class="post-input-container">
 					<p class="caption">Content: <span>({contentLenght} characters)</span></p>
-					<MarkupTextEditor content={contentMd} on:change={handleContentChange} />
+					<!-- <MarkupTextEditor content={contentMd} on:change={handleContentChange} /> -->
+					<svelte:component this="{Editor}" content={contentMd} on:change={handleContentChange} />
 				</div>
 			</div>
 		{/if}
@@ -370,7 +377,3 @@
 	}}
 	handleOk={onConfirm}
 />
-
-<style>
-	@import 'https://cdn.quilljs.com/1.3.6/quill.bubble.css';
-</style>

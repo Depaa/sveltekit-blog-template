@@ -24,8 +24,8 @@
 	image={data.post.image}
 	tags={data.post.seo.tags || []}
 	url="{PUBLIC_BASE_URL}/blog/{data.post.slug}"
-	datePublished={new Date(data.post.publishedAt).toISOString()}
-	lastUpdated={new Date(data.post.updatedAt || data.post.publishedAt).toISOString()}
+	datePublished={new Date(data.post.publishedAt || data.post.createdAt).toISOString()}
+	lastUpdated={new Date(data.post.updatedAt || data.post.createdAt).toISOString()}
 	timeToRead={data.post.readingTime || 0}
 />
 

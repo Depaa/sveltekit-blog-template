@@ -15,10 +15,14 @@ import type { PageLoad } from './$types';
 // export const csr = false;
 
 export const load: PageLoad = async ({ fetch, params }) => {
-	const isLoggedIn = getIsLogged();
-	if (isLoggedIn) {
-		const token = await authGuard().getToken();
-		return { post: await getPostAdmin(fetch, params.slug, token) };
+	try {
+		const isLoggedIn = getIsLogged();
+		if (isLoggedIn) {
+			const token = await authGuard().getToken();
+			return { post: await getPostAdmin(fetch, params.slug, token) };
+		}
+		return { post: await getPost(fetch, params.slug) };
+	} catch (error) {
+		console.error(error);
 	}
-	return { post: await getPost(fetch, params.slug) };
 };
