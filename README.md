@@ -28,7 +28,7 @@ Link to the series:
 
 6. npm install in frontend/
 
-7. update environment variabiles in frontend/.env
+7. update environment variabiles in frontend/.env.production and frontend/.env.quality
 - {ENVIRONMENT}: prod
 - {DOMAIN_NAME}: example.com
 - {DOMAIN_URL}: https://blog.example.com
@@ -47,7 +47,7 @@ Link to the series:
 - {USERPOOL_CLIENT_ID}
 - {USERPOOL_DOMAIN_URL}
 
-9. update svelte.config.js with your preferrend configuration, I'll leave an example out there. What you must do is updating the existing resources:
+9. update adapter.prodution.json and adapter.quality.json with your preferrend configuration, I'll leave an example out there. What you must do is updating the existing resources:
 - {DISTRIBUTION_ID}: id of the CloudFront distribution created a few minutes ago
 - {CLOUDFRONT_URL}: url of the CloudFront distribution created a few minutes ago
 
