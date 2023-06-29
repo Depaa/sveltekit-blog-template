@@ -27,9 +27,9 @@
   "author": "Matteo Depascale",
   "license": "MIT",
   "dependencies": {
-    "@aws-sdk/client-cloudfront": "^3.350.0",
-    "@aws-sdk/client-dynamodb": "^3.351.0",
-    "@aws-sdk/client-s3": "^3.350.0",
+    "@aws-sdk/client-cloudfront": "^3.362.0",
+    "@aws-sdk/client-dynamodb": "^3.362.0",
+    "@aws-sdk/client-s3": "^3.362.0",
     "@aws-sdk/lib-dynamodb": "^3.238.0",
     "@aws-sdk/s3-request-presigner": "^3.282.0",
     "@aws-sdk/util-dynamodb": "^3.238.0",
