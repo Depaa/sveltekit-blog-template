@@ -14,7 +14,7 @@
 		"deploy:production": "vite build --mode production"
 	},
 	"dependencies": {
-		"aws-amplify": "5.0.15",
+		"aws-amplify": "5.3.3",
 		"dompurify": "^3.0.3",
 		"easymde": "^2.18.0",
 		"font-awesome": "^4.7.0",
