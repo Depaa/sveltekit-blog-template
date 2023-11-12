@@ -25,9 +25,6 @@
 		<a class={$page.url.pathname === '/blog' ? 'active-page' : ''} href="/blog">Blog</a>
 	</div>
 	<div>
-		{#if isLoggedIn === false}
-			<a class={$page.url.pathname === '/admin/' ? 'active-page' : ''} href="/admin">Login</a>
-		{/if}
 		{#if isLoggedIn}
 			<button on:click={handleLogout}>Logout</button>
 		{/if}

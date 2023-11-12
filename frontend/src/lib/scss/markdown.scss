@@ -17,6 +17,7 @@
 	padding-bottom: 80px;
 	padding-right: 15px;
 	padding-left: 15px;
+	overflow-wrap: anywhere !important;
 
 	@include for-iphone-se {
 		padding-left: 0;
@@ -93,7 +94,7 @@
 		}
 
 		h2 {
-			margin: 3rem 0 0.5rem;
+			margin: 2rem 0 0.5rem;
 		}
 
 		h3 {
@@ -128,19 +129,23 @@
 		}
 
 		blockquote {
-			padding: 25px 25px 15px;
+			padding: 5px 0 5px 20px;
 			border-radius: 20px;
 			font-size: 1.1rem;
 			border-left: 4px solid var(--primary-color);
 			background: var(--callout-background-color);
+			margin: 1rem 0;
+			p {
+				margin: 0;
+			}
 		}
 
-		code:not([class^='language-']) {
-			background: var(--inline-code-background-color);
-			padding: 5px 10px;
-			border-radius: 5px;
-			font-family: var(--mono-font);
-		}
+		// code:not([class^='language-']) {
+		// 	background: var(--inline-code-background-color);
+		// 	padding: 5px 10px;
+		// 	border-radius: 5px;
+		// 	font-family: var(--mono-font);
+		// }
 	}
 }
 

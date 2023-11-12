@@ -23,7 +23,7 @@
 			{/if}
 		</div>
 		<div slot="content">
-			<div class="title">{post.title}</div>
+			<div class="title">{post.title}</div>			
 			<div class="note">{`~ ${post.readingTime ?? 0} minutes`}</div>
 			<div class="text">{post.description}</div>
 		</div>

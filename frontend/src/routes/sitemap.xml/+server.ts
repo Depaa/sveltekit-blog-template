@@ -17,13 +17,13 @@ const render = (posts: SitemapItem[]) => {
     xmlns:pagemap="http://www.google.com/schemas/sitemap-pagemap/1.0" 
     xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>dev.cloudnature.net</loc>
+    <loc>https://cloudnature.net</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
   </url>
   <url>
-    <loc>dev.cloudnature.net/blog</loc>
+    <loc>https://cloudnature.net/blog</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>

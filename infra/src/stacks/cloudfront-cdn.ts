@@ -95,7 +95,7 @@ export class BlogCdnStack extends Stack {
 				compress: true,
 				allowedMethods: AllowedMethods.ALLOW_ALL,
 				cachedMethods: CachedMethods.CACHE_GET_HEAD_OPTIONS,
-				responseHeadersPolicy: ResponseHeadersPolicy.CORS_ALLOW_ALL_ORIGINS_AND_SECURITY_HEADERS
+				responseHeadersPolicy: ResponseHeadersPolicy.CORS_ALLOW_ALL_ORIGINS_WITH_PREFLIGHT_AND_SECURITY_HEADERS
 			},
 			additionalBehaviors: {
 				'/js/script.*': {
@@ -123,7 +123,7 @@ export class BlogCdnStack extends Stack {
 					compress: true,
 					allowedMethods: AllowedMethods.ALLOW_ALL,
 					cachedMethods: CachedMethods.CACHE_GET_HEAD_OPTIONS,
-					responseHeadersPolicy: ResponseHeadersPolicy.CORS_ALLOW_ALL_ORIGINS_AND_SECURITY_HEADERS
+					responseHeadersPolicy: ResponseHeadersPolicy.CORS_ALLOW_ALL_ORIGINS_WITH_PREFLIGHT_AND_SECURITY_HEADERS
 				},
 			},
 			minimumProtocolVersion: SecurityPolicyProtocol.TLS_V1_2_2021,
@@ -133,7 +133,6 @@ export class BlogCdnStack extends Stack {
 			domainNames: [buildConfig.stacks.domain.url],
 			certificate,
 		});
-
 		return cdn;
 	};
 

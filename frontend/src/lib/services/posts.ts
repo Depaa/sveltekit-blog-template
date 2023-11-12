@@ -170,7 +170,7 @@ const deletePost = async (
 	console.time(`delete-post-${id}`);
 	const url = `${ADMIN_POSTS_URL}/${id}`;
 	const params = {
-		method: 'PUT',
+		method: 'DELETE',
 		headers: {
 			'content-type': 'application/json',
 			Authorization: `Bearer ${token}`,

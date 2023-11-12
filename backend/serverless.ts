@@ -12,6 +12,7 @@ import {
 	postCreatePresignedUrl,
 	adminGetPost,
 	saveImages,
+	newsletterSubscribe,
 	// sitemap
 } from '@functions/index';
 
@@ -46,13 +47,14 @@ const serverlessConfiguration: AWS = {
 			usagePlan: {
 				throttle: {
 					burstLimit: 10,
-					rateLimit: 10
-				}
-			}
+					rateLimit: 10,
+				},
+			},
 		},
 		environment: {
 			NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
 			POSTS_TABLE_NAME: '${self:custom.postTableName}',
+			NEWSLETTER_TABLE_NAME: '${self:custom.newsletterTableName}',
 			REGION: '${self:provider.region}',
 			ENV: '${self:provider.stage}',
 			BLOG_DISTRIBUTION_ID: '${self:custom.blogDistributionId}',
@@ -84,7 +86,12 @@ const serverlessConfiguration: AWS = {
 					'dynamodb:UpdateItem',
 					'dynamodb:DeleteItem',
 				],
-				Resource: ['${self:custom.postTableArn}', '${self:custom.postTableArn}/*'],
+				Resource: [
+					'${self:custom.postTableArn}', 
+					'${self:custom.postTableArn}/*',
+					'${self:custom.newsletterTableArn}', 
+					'${self:custom.newsletterTableArn}/*'
+				],
 			},
 			{
 				Effect: 'Allow',
@@ -116,6 +123,7 @@ const serverlessConfiguration: AWS = {
 		postCreatePresignedUrl,
 		adminGetPost,
 		saveImages,
+		newsletterSubscribe,
 		// sitemap
 	},
 	package: { individually: true },
@@ -130,7 +138,7 @@ const serverlessConfiguration: AWS = {
 				'@aws-sdk/client-s3',
 				'@aws-sdk/lib-dynamodb',
 				'@aws-sdk/s3-request-presigner',
-				'@aws-sdk/util-dynamodb'
+				'@aws-sdk/util-dynamodb',
 			],
 			target: 'node18',
 			define: { 'require.resolve': undefined },
@@ -158,7 +166,6 @@ const serverlessConfiguration: AWS = {
 		postTableArn: '${cf:${self:provider.stage}-blog-posts-table.ExportsOutputPostTableArn}',
 		postTableStreamArn: '${cf:${self:provider.stage}-blog-posts-table.ExportsOutputPostTableStreamArn}',
 		blogCdnUrl: '${cf:${self:provider.stage}-blog.ExportsOutputBlogDistributionUrl}',
-		blogDomainUrl: 'http://localhost:5173',
 		blogDistributionId: '${cf:${self:provider.stage}-blog.ExportsOutputBlogDistributionId}',
 		blogDistributionArn: '${cf:${self:provider.stage}-blog.ExportsOutputBlogDistributionArn}',
 		// blogBucketName: '${cf:${self:provider.stage}-blog.ExportsOutputBlogS3BucketName}',
@@ -172,6 +179,8 @@ const serverlessConfiguration: AWS = {
 		contentCdnUrl: '${cf:${self:provider.stage}-blog-content.ExportsOutputContentCdnUrl}',
 		contentDistributionId: '${cf:${self:provider.stage}-blog-content.ExportsOutputContentCdnId}',
 		imagesDistributionArn: '${cf:${self:provider.stage}-blog-content.ExportsOutputContentCdnArn}',
+		newsletterTableName: '${cf:${self:provider.stage}-blog-newsletter-table.ExportsOutputNewsletterTableName}',
+		newsletterTableArn: '${cf:${self:provider.stage}-blog-newsletter-table.ExportsOutputNewsletterTableArn}',
 	},
 };
 

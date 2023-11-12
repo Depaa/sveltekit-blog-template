@@ -3,6 +3,11 @@ export interface Seo {
 	description: string;
 	tags: string[];
 }
+export interface Author {
+	name: string;
+	description: string;
+	imageUrl: string;
+}
 export interface Post {
 	id: string;
 	slug: string;
@@ -15,5 +20,6 @@ export interface Post {
 	contentMd: string;
 	readingTime?: string;
 	seo?: Seo;
-	state?: "PUBLIC" | "PRIVATE"
+	state?: "PUBLIC" | "PRIVATE";
+	authors?: Author[];
 }

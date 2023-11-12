@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_BASE_URL, PUBLIC_IMAGE_URL, PUBLIC_LOGO_URL } from '$env/static/public';
+	import { PUBLIC_BASE_URL, PUBLIC_IMAGE_URL, PUBLIC_ROOT_DESCRIPTION } from '$env/static/public';
 	import RecentPostGrid from '$lib/components/2-grid.svelte';
 	import BlogPostCard from '$lib/components/blog-post-card.svelte';
 	import RecentPostSection from '$lib/components/recent-post-section.svelte';
@@ -25,8 +25,8 @@
 <Seo
 	image="{PUBLIC_BASE_URL}/logos/logo-complete-black.png"
 	url={PUBLIC_BASE_URL}
-	title={undefined}
-	articleDescription={undefined}
+	title="CloudNature"
+	articleDescription="{PUBLIC_ROOT_DESCRIPTION}"
 	datePublished={undefined}
 	lastUpdated={undefined}
 	timeToRead={0}

@@ -10,3 +10,4 @@ export { default as listPosts } from './posts/list';
 export { default as invalidateCache } from './posts/invalidate-cache';
 export { default as saveImages } from './posts/images/save';
 export { default as sitemap } from './posts/sitemap';
+export { default as newsletterSubscribe } from './newsletter/subscribe';

@@ -8,6 +8,7 @@ import { DomainsStack } from './stacks/domains';
 import { BlogAuthorizerStack } from './stacks/cognito-auth';
 import { ContentBucketStack } from './stacks/content-storage';
 import { BlogCdnStack } from './stacks/cloudfront-cdn';
+import { NewsletterTableStack } from './stacks/newsletter-table';
 
 const app = new App();
 
@@ -25,7 +26,9 @@ const blogApiGatewayStackId = `${stackId}-api`;
 const blogContentBucketStackId = `${stackId}-content`;
 const postsTableStackId = `${stackId}-posts-table`;
 const blogDomainsStackId = `${stackId}-domains`;
+const blogMonitoringStackId = `${stackId}-monitoring`;
 const blogCdnStackId = `${stackId}`;
+const newsletterTableStackId = `${stackId}-newsletter-table`;
 
 const postsTableStack = new PostsTableStack(
 	app,
@@ -92,6 +95,16 @@ new ContentBucketStack(
 		...baseProps,
 		stackName: blogContentBucketStackId,
 		blogContentCertificateArn: blogDomainsStack.contentCertificate.certificateArn,
+	},
+	buildConfig
+);
+
+new NewsletterTableStack(
+	app,
+	newsletterTableStackId,
+	{
+		...baseProps,
+		stackName: newsletterTableStackId,
 	},
 	buildConfig
 );

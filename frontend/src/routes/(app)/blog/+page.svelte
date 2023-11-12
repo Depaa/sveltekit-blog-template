@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { PUBLIC_BASE_URL, PUBLIC_IMAGE_URL, PUBLIC_LOGO_URL } from '$env/static/public';
+	import { PUBLIC_BASE_URL, PUBLIC_IMAGE_URL, PUBLIC_BLOG_DESCRIPTION } from '$env/static/public';
 	import { authGuard, isLogged } from '$lib/auth/auth';
 	import BlogGrid from '$lib/components/1-2-3-grid.svelte';
 	import BlogPostCard from '$lib/components/blog-post-card.svelte';
@@ -62,7 +62,7 @@
 <Seo
 	article={true}
 	title="Blog"
-	articleDescription="CloudNature blogposts, get a glimps of what we wrote about."
+	articleDescription="{PUBLIC_BLOG_DESCRIPTION}"
 	image="{PUBLIC_BASE_URL}/logos/logo-complete-black.png"
 	url="{PUBLIC_BASE_URL}/blog"
 	datePublished={undefined}

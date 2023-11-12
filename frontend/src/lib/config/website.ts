@@ -1,11 +1,10 @@
 import {
 	PUBLIC_GITHUB_USERNAME,
 	PUBLIC_BASE_URL,
-	PUBLIC_GITHUB_PROFILE,
-  PUBLIC_LINKEDIN_USERNAME,
   PUBLIC_LINKEDIN_PROFILE,
   PUBLIC_TWITTER_USERNAME,
-  PUBLIC_TWITTER_PROFILE
+  PUBLIC_TWITTER_PROFILE,
+	PUBLIC_ROOT_DESCRIPTION
 } from '$env/static/public';
 
 const website = {
@@ -14,8 +13,7 @@ const website = {
 	siteLanguage: 'en-US',
 	siteTitle: 'CloudNature',
 	siteShortTitle: 'CloudNature',
-	description:
-		'CloudNature Blog - Get all the info you need about Cloud',
+	description: PUBLIC_ROOT_DESCRIPTION,
 	siteUrl: PUBLIC_BASE_URL,
 	keywords: ['cloud', 'aws', 'serverless', 'programming', 'coding'],
 	backgroundColor: '#1b1b1b',

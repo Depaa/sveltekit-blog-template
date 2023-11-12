@@ -13,10 +13,10 @@ const processHandler = async (event: any) => {
 			.replace(/([^\w ]|_)/g, '')
 			.replace(/ /g, '-')
 			.toLowerCase();
-	body.title = body.title.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	body.content = body.content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	body.contentMd = body.contentMd.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-	body.description = body.description.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	// body.title = body.title.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	// body.content = body.content.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	// body.contentMd = body.contentMd.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+	// body.description = body.description.replace(/</g, '&lt;').replace(/>/g, '&gt;');
 	body.readingTime = calculateReadingTime(body.content);
 	body.createdBy = event.requestContext.authorizer.claims.sub;
 	body.featured = body.featured || 'false';

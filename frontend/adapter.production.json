@@ -1,5 +1,5 @@
 {
-  "stackName": "dev-blog-ssr-adapter",
+  "stackName": "prod-blog-ssr-adapter",
   "autoDeploy": true,
   "FQDN": "{FQDN}",
   "esbuildOptions": {
@@ -10,7 +10,7 @@
     "distributionDomainName": "{CLOUDFRONT_URL}"
   },
   "lambdaConfig": {
-    "memorySize": 512,
+    "memorySize": 1024,
     "runtime": "NODEJS_18_X",
     "architecture": "ARM_64",
     "timeout": 300,

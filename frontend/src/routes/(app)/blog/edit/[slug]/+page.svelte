@@ -52,6 +52,7 @@
 		contentLenght = event.detail.text.length;
 		contentMd = event.detail.md;
 		newData.content = event.detail.html;
+		newData.contentMd = event.detail.md;
 	};
 
 	const arrayBufferToBase64 = (buffer: ArrayBuffer) => {
@@ -89,9 +90,7 @@
 	const handleSave = async () => {
 		try {
 			const userToken = await authGuard().getToken();
-			if (newSeoData.title && newSeoData.description && newSeoData.tags.length > 0) {
-				newData.seo = newSeoData;
-			}
+			newData.seo = newSeoData;
 			await updatePost(fetch, userToken, data.post.id, newData);
 			addToast('success', 'Post uploaded correctly!');
 		} catch (error) {
@@ -267,7 +266,7 @@
 					<p class="caption">Featured:</p>
 					<Toggle
 						value={newData.featured === 'true'}
-						onChangeValue={() => (newData.featured === 'true' ? 'false' : 'true')}
+						onChangeValue={() => newData.featured = newData.featured === 'true' ? 'false' : 'true'}
 					/>
 				</div>
 				<div class="post-input-container">

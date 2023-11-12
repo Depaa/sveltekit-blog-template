@@ -16,8 +16,13 @@
 		text-decoration: none;
 	}
 
+	@media (min-width: 768px) {
+		&.clickable {
+			height: 100%;
+		}
+	}
+
 	&.clickable {
-		height: 100%;
 		cursor: pointer;
 		&:hover {
 			box-shadow: var(--card-shadow-hover);
@@ -82,9 +87,6 @@
 		.text {
 			margin-top: 5px;
 			font-size: 0.9rem;
-		}
-
-		.footer {
 		}
 
 		.tags {

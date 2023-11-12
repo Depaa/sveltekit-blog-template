@@ -48,7 +48,7 @@ const parseResponse = (statusCode = 200, message?: string, data = {}): APIGatewa
   return {
     headers: {
       "Content-Type": "application/json",
-      'Access-Control-Allow-Origin': process.env.ENV === 'dev' ? '*' : `https://${process.env.BLOG_CDN_URL}`,
+      'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Credentials': true,
       'Access-Control-Allow-Headers': '*', //TODO
       'Cache-Control': statusCode >= 300 ? 'no-cache' : 'public', //TODO

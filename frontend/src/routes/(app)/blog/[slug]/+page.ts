@@ -17,13 +17,35 @@ import type { PageLoad } from './$types';
 export const load: PageLoad = async ({ fetch, params }) => {
 	try {
 		const isLoggedIn = getIsLogged();
-		const related = await listPosts(fetch, '', 3, params.slug);
+		const related = await listPosts(fetch, '', 4, params.slug);
 		if (isLoggedIn) {
 			const token = await authGuard().getToken()
 			const post = await getPostAdmin(fetch, params.slug, token);
+			post.content = post.content
+				.replace(/&lt;/g, '<')
+				.replace(/&gt;/g, '>')
+				.replaceAll('<code>', '<pre><code>')
+				.replaceAll('</code>', '</code></pre>')
+				.replaceAll('<pre><code>', '<pre class="theme-atom-one-dark code-container"><code class="hljs language-javascript">')
+				.replaceAll('<link', '&lt;link')
+				.replaceAll('<script', '&lt;script')
+				.replaceAll('</script>', '&lt;/script&gt;')
+				.replaceAll('<button', '&lt;button')
+				.replaceAll('</button>', '&lt;/button&gt;')
 			return { post, related }
 		}
 		const post = await getPost(fetch, params.slug);
+		post.content = post.content
+			.replace(/&lt;/g, '<')
+			.replace(/&gt;/g, '>')
+			.replaceAll('<code>', '<pre><code>')
+			.replaceAll('</code>', '</code></pre>')
+			.replaceAll('<pre><code>', '<pre class="theme-atom-one-dark code-container"><code class="hljs language-javascript">')
+			.replaceAll('<link', '&lt;link')
+			.replaceAll('<script', '&lt;script')
+			.replaceAll('</script>', '&lt;/script&gt;')
+			.replaceAll('<button', '&lt;button')
+			.replaceAll('</button>', '&lt;/button&gt;')
 
 		return { post, related }
 	} catch (error) {

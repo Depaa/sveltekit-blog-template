@@ -31,15 +31,12 @@
 	const handleContentChange = (event: CustomEvent<{ html: string; md: string; text: string }>) => {
 		newData.content = event.detail.html;
 		newData.contentMd = event.detail.md;
-		console.log('HERE', event.detail);
 	};
 
 	const handleSave = async () => {
 		try {
 			const userToken = await authGuard().getToken();
-			if (newSeoData.title && newSeoData.description && newSeoData.tags.length > 0) {
-				newData.seo = newSeoData;
-			}
+			newData.seo = newSeoData;
 			let res = await createPost(fetch, userToken, newData);
 			addToast('success', 'Done!');
 			goto('/blog/edit/' + res.data.id);
@@ -178,7 +175,7 @@
 					<p class="caption">Featured:</p>
 					<Toggle
 						value={newData.featured === 'true'}
-						onChangeValue={() => (newData.featured === 'true' ? 'false' : 'true')}
+						onChangeValue={() => newData.featured = newData.featured === 'true' ? 'false' : 'true'}
 					/>
 				</div>
 				<div class="post-input-container">

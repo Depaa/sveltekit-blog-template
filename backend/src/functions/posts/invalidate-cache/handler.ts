@@ -38,6 +38,9 @@ const processHandler = async (event: DynamoDBStreamEvent) => {
 		if (record.eventName === 'INSERT' && record.dynamodb.NewImage.state.S === 'PUBLIC') {
 			logger.info('List cache has to be flushed because insert');
 			pathToInvalidate.add(`/api/posts?*`);
+		} else if (record.eventName === 'INSERT') {
+			logger.info('List cache for admin has to be flushed because insert');
+			pathToInvalidate.add(`/api/admin*`);
 		} else if (record.eventName === 'REMOVE' && record.dynamodb.OldImage.state.S === 'PUBLIC') {
 			logger.info('List cache has to be flushed because remove');
 			pathToInvalidate.add(`/api/posts?*`);

@@ -13,3 +13,5 @@ cdk.out
 !infra/lambdas/*/*.js
 !test/**.js
 !frontend/**/*.js
+
+!src/lib/**

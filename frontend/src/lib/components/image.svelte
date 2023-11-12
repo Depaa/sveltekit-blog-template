@@ -3,7 +3,7 @@
 -	https://github.com/matfantinel
 -->
 <script lang="ts">
-	import logo from '$lib/images/svelte-logo.svg';
+	import placeholder from '$lib/images/placeholder.jpg';
 	export let alt: string | null;
 	export let path: string | null;
 	export let figcaption: string | null = null;
@@ -18,7 +18,7 @@
 			currentTarget: EventTarget & Element;
 		}
 	) => {
-		if (e.target && e.target.src) e.target.src = logo;
+		if (e.target && e.target.src) e.target.src = placeholder;
 	};
 </script>
 
@@ -35,7 +35,7 @@
 		/>
 	{/if}
 	{#if !imageSrc}
-		<img src={logo} {alt} loading="eager" decoding="async" />
+		<img src={placeholder} {alt} loading="eager" decoding="async" />
 	{/if}
 	{#if figcaption}
 		<!-- svelte-ignore a11y-structure -->
