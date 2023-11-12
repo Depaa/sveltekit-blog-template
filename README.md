@@ -3,7 +3,7 @@ Link to the series:
 - Part 2: https://medium.com/@depascalematteo/blog-series-from-zero-to-hero-part-2-serverless-backend-api-on-aws-for-blog-website-ad2af596b2e0
 - Part 3: https://medium.com/@depascalematteo/building-static-backoffice-on-aws-with-sveltekit-11937a2d13c
 - Part 4: https://medium.com/@depascalematteo/building-a-lightning-fast-serverless-blog-on-aws-with-sveltekit-part-4-5ca74d6dfa4a
-- Part 5:
+- Part 5: https://depascalematteo.medium.com/from-spa-to-ssr-on-aws-boost-your-websites-seo-765964a41c05
 
 
 ## To release it follow these steps:
