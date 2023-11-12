@@ -88,7 +88,7 @@
 		<SocialShare />
 	</div>
 	<div class="authors-list">
-		<AuthorsCard authors={data.post?.authors} />
+		<AuthorsCard authors={data.post?.authors || []} />
 	</div>
 </article>
 {/if}
